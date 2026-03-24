@@ -1,0 +1,36 @@
+# Minimal Prometheus Configuration
+# This configuration is designed for the minimal Prometheus build
+# which excludes cloud service discovery and remote storage capabilities.
+
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+
+# Alert rules can be loaded from files
+rule_files:
+  # - "alerts/*.yml"
+
+# Scrape configurations using only static_configs and file_sd
+scrape_configs:
+  # Example: Static configuration for monitoring a local node exporter
+  - job_name: "node"
+    static_configs:
+      - targets: ["localhost:9100"]
+        labels:
+          env: "production"
+
+  # Example: File-based service discovery
+  # This allows dynamic targets without cloud SD
+  - job_name: "app"
+    file_sd_configs:
+      - files:
+          - "/etc/prometheus/targets/*.json"
+        refresh_interval: 30s
+
+  # Example: Monitoring Prometheus itself
+  - job_name: "prometheus"
+    static_configs:
+      - targets: ["localhost:9090"]
+
+# Note: Remote read/write endpoints are NOT supported in minimal builds
+# Note: Cloud service discovery (AWS, GCP, Azure, K8s, etc.) is NOT supported in minimal builds
