@@ -130,10 +130,10 @@ func (noopAppender) Rollback() error {
 
 // OTLPOptions is a placeholder type for minimal builds.
 type OTLPOptions struct {
-	ConvertDelta             bool
-	NativeDelta              bool
-	LookbackDelta            time.Duration
-	EnableTypeAndUnitLabels  bool
+	ConvertDelta            bool
+	NativeDelta             bool
+	LookbackDelta           time.Duration
+	EnableTypeAndUnitLabels bool
 }
 
 // NewReadHandler returns a no-op handler for minimal builds.
