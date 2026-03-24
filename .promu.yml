@@ -10,11 +10,6 @@ build:
           path: ./cmd/prometheus
         - name: promtool
           path: ./cmd/promtool
-        - name: prometheus-minimal
-          path: ./cmd/prometheus
-          tags:
-            - minimal
-            - remove_all_sd
     tags:
         all:
             - netgo
@@ -32,7 +27,6 @@ tarball:
     # remember to make sure the new files will be generated after `make build`.
     files:
         - documentation/examples/prometheus.yml
-        - documentation/examples/prometheus-minimal.yml
         - LICENSE
         - NOTICE
         - npm_licenses.tar.bz2
