@@ -111,20 +111,6 @@ The Makefile provides several targets:
 * *vet*: check the source code for common errors
 * *assets*: build the React UI
 
-### Minimal build
-
-Prometheus supports a minimal build mode that significantly reduces binary size (~72% smaller) by excluding:
-- Cloud and Kubernetes service discovery (keeps file_sd and static_configs)
-- Remote read/write capabilities
-
-To build the minimal version:
-
-```bash
-go build -tags "minimal,remove_all_sd" ./cmd/prometheus
-```
-
-See [MINIMAL_BUILD.md](MINIMAL_BUILD.md) for detailed documentation on building and using the minimal version.
-
 ### Service discovery plugins
 
 Prometheus is bundled with many service discovery plugins. You can customize
