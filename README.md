@@ -111,38 +111,6 @@ The Makefile provides several targets:
 * *vet*: check the source code for common errors
 * *assets*: build the React UI
 
-### Service discovery plugins
-
-Prometheus is bundled with many service discovery plugins. You can customize
-which service discoveries are included in your build using Go build tags.
-
-To exclude service discoveries when building with `make build`, add the desired
-tags to the `.promu.yml` file under `build.tags.all`:
-
-```yaml
-build:
-    tags:
-        all:
-            - netgo
-            - builtinassets
-            - remove_all_sd           # Exclude all optional SDs
-            - enable_kubernetes_sd    # Re-enable only kubernetes
-```
-
-Then run `make build` as usual. Alternatively, when using `go build` directly:
-
-```bash
-go build -tags "remove_all_sd,enable_kubernetes_sd" ./cmd/prometheus
-```
-
-Available build tags:
-* `remove_all_sd` - Exclude all optional service discoveries (keeps file_sd, static_sd, and http_sd)
-* `enable_<name>_sd` - Re-enable a specific SD when using `remove_all_sd`
-
-If you add out-of-tree plugins, which we do not endorse at the moment,
-additional steps might be needed to adjust the `go.mod` and `go.sum` files. As
-always, be extra careful when loading third party code.
-
 ### Building the Docker image
 
 You can build a docker image locally with the following commands:
