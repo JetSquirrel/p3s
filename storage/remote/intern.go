@@ -16,6 +16,9 @@
 //
 // Copyright (c) 2014 The strutil Authors. All rights reserved.
 
+
+//go:build !minimal
+
 package remote
 
 import (

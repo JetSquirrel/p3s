@@ -11,34 +11,18 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+//go:build minimal
 
-//go:build !minimal
-
-package remote
+package azuread
 
 import (
-	"sync"
-
-	"github.com/prometheus/client_golang/prometheus"
+	"net/http"
 )
 
-type maxTimestamp struct {
-	mtx   sync.Mutex
-	value float64
-	prometheus.Gauge
-}
+// AzureADConfig is a placeholder for minimal builds.
+type AzureADConfig struct{}
 
-func (m *maxTimestamp) Set(value float64) {
-	m.mtx.Lock()
-	defer m.mtx.Unlock()
-	if value > m.value {
-		m.value = value
-		m.Gauge.Set(value)
-	}
-}
-
-func (m *maxTimestamp) Get() float64 {
-	m.mtx.Lock()
-	defer m.mtx.Unlock()
-	return m.value
+// NewAzureADRoundTripper is a no-op for minimal builds.
+func NewAzureADRoundTripper(_ *AzureADConfig, next http.RoundTripper) (http.RoundTripper, error) {
+	return next, nil
 }
