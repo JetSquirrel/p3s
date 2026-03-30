@@ -14,7 +14,6 @@
 // Provenance-includes-license: Apache-2.0
 // Provenance-includes-copyright: Copyright The OpenTelemetry Authors.
 
-
 //go:build !minimal
 
 package prometheusremotewrite
